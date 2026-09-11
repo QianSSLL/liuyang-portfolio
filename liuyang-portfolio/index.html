@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘洋 LIUYANG · tvc剪辑师/后期剪辑师</title>
+<meta name="description" content="刘洋（LIUYANG）— TVC剪辑师 / 后期剪辑师，专注品牌广告短片剪辑。">
+<style>
+:root{
+  --bg:#0b0b0c;
+  --bg2:#111113;
+  --line:rgba(255,255,255,.10);
+  --text:#e8e6e1;
+  --muted:#9a978f;
+  --accent:#c8a96a;
+  --serif:"Songti SC","STSong","Noto Serif SC","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#111}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+img,video{max-width:100%;display:block}
+
+/* ---------- 顶部导航 ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 5vw;
+  background:linear-gradient(to bottom,rgba(11,11,12,.85),rgba(11,11,12,0));
+  transition:background .4s;
+}
+.nav.solid{background:rgba(11,11,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-logo{font-family:var(--serif);font-size:17px;letter-spacing:.35em}
+.nav-logo em{font-style:normal;color:var(--accent);font-size:11px;letter-spacing:.3em;display:block;line-height:1;margin-top:2px}
+.nav-links{display:flex;gap:34px;font-size:13px;letter-spacing:.25em}
+.nav-links a{color:var(--muted);transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+
+/* ---------- 首屏 ---------- */
+.hero{position:relative;height:100svh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video{width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.9)}
+.hero-fallback{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 70% 20%,#1c1a16 0%,#0b0b0c 60%),
+  linear-gradient(160deg,#141210,#0b0b0c);}
+.hero-fallback::after{content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.015) 3px 4px)}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(11,11,12,.95) 0%,rgba(11,11,12,.2) 45%,rgba(11,11,12,.35) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding:0 5vw 9vh}
+.hero-role{font-size:12px;letter-spacing:.5em;color:var(--accent);margin-bottom:20px}
+.hero-name{font-family:var(--serif);font-weight:600;font-size:clamp(52px,10vw,124px);line-height:1.05;letter-spacing:.08em}
+.hero-name span{display:block;font-size:clamp(13px,1.6vw,18px);letter-spacing:.6em;color:var(--muted);margin-top:14px;font-weight:400}
+.hero-tag{max-width:620px;margin-top:26px;color:#cfccc4;font-size:clamp(14px,1.5vw,17px);line-height:2;border-left:2px solid var(--accent);padding-left:18px}
+.scroll-hint{position:absolute;right:5vw;bottom:9vh;z-index:2;writing-mode:vertical-rl;font-size:11px;letter-spacing:.4em;color:var(--muted);display:flex;align-items:center;gap:12px}
+.scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--accent),transparent);animation:drip 2.2s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- 通用板块 ---------- */
+section{position:relative;padding:110px 5vw;scroll-margin-top:64px}
+.sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:56px;border-bottom:1px solid var(--line);padding-bottom:22px}
+.sec-num{font-family:var(--serif);color:var(--accent);font-size:14px;letter-spacing:.3em}
+.sec-title{font-family:var(--serif);font-size:clamp(26px,3.6vw,40px);letter-spacing:.2em;font-weight:600}
+.sec-en{margin-left:auto;font-size:11px;letter-spacing:.45em;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---------- 精选作品 ---------- */
+.works{background:var(--bg2)}
+.work-item{display:grid;grid-template-columns:1.25fr 1fr;gap:5vw;align-items:center;padding:56px 0;border-bottom:1px solid var(--line)}
+.work-item:last-child{border-bottom:none;padding-bottom:0}
+.work-item:nth-child(even){direction:rtl}
+.work-item:nth-child(even)>*{direction:ltr}
+.work-media{position:relative;background:#000;overflow:hidden;border:1px solid var(--line);display:flex;justify-content:center;min-height:280px}
+.work-media video{width:auto;max-width:100%;height:auto;max-height:76vh;display:block;background:#000}
+.work-media .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);background:radial-gradient(90% 90% at 50% 40%,#181715,#0d0d0e);font-size:13px;letter-spacing:.15em;text-align:center;padding:20px}
+.work-media .ph svg{width:36px;height:36px;stroke:var(--accent);opacity:.8}
+.work-info .w-idx{font-family:var(--serif);color:var(--accent);font-size:13px;letter-spacing:.35em;margin-bottom:14px}
+.work-info h3{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);letter-spacing:.1em;font-weight:600;line-height:1.4}
+.work-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin:18px 0;font-size:12.5px;color:var(--muted);letter-spacing:.1em}
+.work-meta b{color:var(--text);font-weight:500}
+.work-desc{color:#b9b6ae;font-size:14px;line-height:2;max-width:420px}
+
+/* ---------- 关于我 ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:6vw;align-items:start}
+.about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.tag{border:1px solid var(--line);padding:7px 18px;font-size:12px;letter-spacing:.2em;color:var(--muted);border-radius:999px;transition:.3s}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+.about-name{font-family:var(--serif);font-size:clamp(30px,4vw,46px);letter-spacing:.12em;font-weight:600}
+.about-name span{display:block;font-size:12px;letter-spacing:.5em;color:var(--muted);margin-top:10px;font-weight:400}
+.about-pos{margin-top:16px;color:var(--accent);font-size:13px;letter-spacing:.3em}
+.about-status{display:inline-block;margin-top:22px;border-left:2px solid var(--accent);padding:6px 14px;background:rgba(200,169,106,.06);color:#d8d5cd;font-size:13px;letter-spacing:.15em}
+.about-intro p{margin-bottom:22px;color:#c6c3bb;text-align:justify}
+.about-intro .hl{color:var(--accent)}
+.soft-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.soft{border:1px solid var(--line);padding:10px 22px;font-size:13px;letter-spacing:.25em;font-family:var(--serif)}
+
+/* ---------- 简历 ---------- */
+.resume{background:var(--bg2)}
+.exp{border-left:1px solid var(--line);padding-left:34px;position:relative;padding-bottom:48px}
+.exp:last-child{padding-bottom:0}
+.exp::before{content:"";position:absolute;left:-4.5px;top:8px;width:8px;height:8px;background:var(--accent);border-radius:50%}
+.exp-date{font-size:12px;letter-spacing:.25em;color:var(--accent);margin-bottom:8px}
+.exp h3{font-family:var(--serif);font-size:20px;letter-spacing:.08em;font-weight:600}
+.exp h4{font-size:13px;color:var(--muted);letter-spacing:.2em;margin:6px 0 12px;font-weight:400}
+.exp p{color:#b9b6ae;font-size:14px;max-width:640px}
+.edu{margin-top:70px;border-top:1px solid var(--line);padding-top:40px;display:flex;flex-wrap:wrap;gap:14px 60px;align-items:baseline}
+.edu-label{font-size:12px;letter-spacing:.35em;color:var(--muted)}
+.edu-value{font-family:var(--serif);font-size:18px;letter-spacing:.1em}
+
+/* ---------- 联系 ---------- */
+.contact-inner{text-align:center;padding:20px 0 30px}
+.contact-inner .c-title{font-family:var(--serif);font-size:clamp(28px,4.5vw,52px);letter-spacing:.15em;font-weight:600;margin-bottom:14px}
+.contact-inner .c-sub{color:var(--muted);letter-spacing:.25em;font-size:13px;margin-bottom:56px}
+.c-cards{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.c-card{border:1px solid var(--line);padding:34px 44px;min-width:230px;transition:.35s;background:rgba(255,255,255,.015)}
+.c-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.c-card svg{width:22px;height:22px;stroke:var(--accent);margin:0 auto 16px}
+.c-card .k{font-size:11px;letter-spacing:.4em;color:var(--muted);margin-bottom:10px}
+.c-card .v{font-size:16px;letter-spacing:.08em;font-family:var(--serif)}
+
+/* ---------- 页脚 ---------- */
+.dl-btn{display:inline-flex;align-items:center;gap:10px;margin-top:44px;border:1px solid var(--accent);
+  color:var(--accent);padding:13px 34px;font-size:13px;letter-spacing:.3em;transition:.3s}
+.dl-btn:hover{background:var(--accent);color:#111}
+.dl-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+footer{border-top:1px solid var(--line);padding:34px 5vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);letter-spacing:.25em}
+
+
+/* ---------- 背景动态层（克制版，尊重减少动态设置） ---------- */
+/* 暖光呼吸层：静态基线 + 仅 no-preference 时呼吸 */
+.hero-glow{position:absolute;inset:-10%;z-index:1;pointer-events:none;
+  background:radial-gradient(55% 45% at 72% 28%,rgba(200,169,106,.16),transparent 70%),
+             radial-gradient(40% 35% at 20% 75%,rgba(200,169,106,.08),transparent 70%);
+  filter:blur(28px)}
+/* 尘埃颗粒 */
+.hero-dust{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-dust i{position:absolute;border-radius:50%;background:rgba(232,222,200,.55);opacity:0;
+  width:var(--s,3px);height:var(--s,3px);left:var(--l,50%);top:var(--t,50%)}
+/* 胶片颗粒（整页覆盖，固定层） */
+body::after{content:"";position:fixed;inset:0;z-index:300;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:240px;opacity:.045;mix-blend-mode:overlay}
+
+@media (prefers-reduced-motion: no-preference){
+  /* 暖光缓慢呼吸（10s，明暗+极缓缩放） */
+  .hero-glow{animation:breathe 10s ease-in-out infinite alternate}
+  @keyframes breathe{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.05)}}
+  /* 胶片颗粒呼吸（8s，仅透明度变化，无位移→无频闪） */
+  body::after{animation:grainBreath 8s ease-in-out infinite alternate}
+  @keyframes grainBreath{from{opacity:.035}to{opacity:.07}}
+  /* 尘埃缓慢漂浮（14–28s 各不相同，alternate 无跳变） */
+  .hero-dust i{animation:
+    drift var(--d,18s) ease-in-out var(--dl,0s) infinite alternate,
+    dustTw var(--td,9s) ease-in-out var(--dl,0s) infinite}
+  @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(var(--dx,24px),var(--dy,-36px),0)}}
+  @keyframes dustTw{0%{opacity:.04}45%{opacity:.4}100%{opacity:.08}}
+  /* 首屏内容轻微漂浮（12s，±6px） */
+  .hero-inner{animation:floatY 12s ease-in-out infinite alternate}
+  @keyframes floatY{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:900px){
+  .nav-links{gap:20px;font-size:12px}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .work-item{grid-template-columns:1fr;gap:26px;padding:44px 0}
+  .sec-en{display:none}
+}
+@media (max-width:600px){
+  section{padding:80px 6vw}
+  .nav{padding:14px 6vw}
+  .nav-logo{font-size:14px}
+  .nav-links{gap:14px;letter-spacing:.12em}
+  .hero-inner{padding:0 6vw 11vh}
+  .scroll-hint{display:none}
+  .c-card{width:100%;padding:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 导航 ========== -->
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="#top">刘洋<em>LIUYANG</em></a>
+  <div class="nav-links">
+    <a href="#works">作品</a>
+    <a href="#about">关于</a>
+    <a href="#resume">简历</a>
+    <a href="#contact">联系</a>
+  </div>
+</nav>
+
+<!-- ========== 首屏 ========== -->
+<header class="hero" id="top">
+  <div class="hero-media">
+    <div class="hero-fallback"></div>
+    <!-- Showreel 背景：静音、循环、内联播放。可替换为 showreel.mp4 -->
+    <video id="bgVideo" src="assets/videos/probiotic-30s.mp4" poster="assets/posters/probiotic-30s.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <div class="hero-glow" aria-hidden="true"></div>
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-dust" aria-hidden="true">
+    <i style="--s:2px;--l:18%;--t:32%;--d:17s;--dl:-3s;--td:8s;--dx:26px;--dy:-40px"></i>
+    <i style="--s:3px;--l:64%;--t:22%;--d:23s;--dl:-8s;--td:11s;--dx:-20px;--dy:-30px"></i>
+    <i style="--s:2px;--l:82%;--t:55%;--d:15s;--dl:-5s;--td:9s;--dx:18px;--dy:-48px"></i>
+    <i style="--s:4px;--l:40%;--t:68%;--d:27s;--dl:-12s;--td:12s;--dx:-28px;--dy:-24px"></i>
+    <i style="--s:2px;--l:8%;--t:74%;--d:19s;--dl:-2s;--td:10s;--dx:22px;--dy:-34px"></i>
+    <i style="--s:3px;--l:55%;--t:44%;--d:21s;--dl:-9s;--td:8.5s;--dx:-16px;--dy:-42px"></i>
+    <i style="--s:2px;--l:30%;--t:18%;--d:25s;--dl:-6s;--td:11s;--dx:30px;--dy:-26px"></i>
+    <i style="--s:3px;--l:74%;--t:78%;--d:16s;--dl:-4s;--td:9.5s;--dx:-24px;--dy:-38px"></i>
+    <i style="--s:2px;--l:48%;--t:84%;--d:22s;--dl:-11s;--td:10.5s;--dx:20px;--dy:-28px"></i>
+    <i style="--s:3px;--l:90%;--t:36%;--d:18s;--dl:-7s;--td:8.8s;--dx:-18px;--dy:-44px"></i>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-role">tvc剪辑师/后期剪辑师</p>
+    <h1 class="hero-name">刘洋<span>LIUYANG</span></h1>
+    <p class="hero-tag">专注品牌广告短片剪辑，把控镜头情绪与高级质感，配合导演打磨品牌视听成片的后期创作者。</p>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</header>
+
+<!-- ========== 精选作品 ========== -->
+<section class="works" id="works">
+  <div class="sec-head reveal">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">精选作品</h2>
+    <span class="sec-en">SELECTED WORKS</span>
+  </div>
+
+  <article class="work-item reveal">
+    <div class="work-media">
+      <video class="work-video" src="assets/videos/probiotic-30s.mp4" poster="assets/posters/probiotic-30s.jpg" controls playsinline preload="none"></video>
+      <div class="ph" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+        <span>视频待上传<br>益生菌30s开屏.mp4</span>
+      </div>
+    </div>
+    <div class="work-info">
+      <p class="w-idx">PROJECT 01 · 2026 · 30s</p>
+      <h3>益生菌tvc开屏广告</h3>
+      <div class="work-meta">
+        <span>客户 / 品牌　<b>马一凡</b></span>
+        <span>职责　<b>后期剪辑</b></span>
+      </div>
+      <p class="work-desc">负责项目全流程主导、视频内容产出与剪辑</p>
+    </div>
+  </article>
+
+  <article class="work-item reveal">
+    <div class="work-media">
+      <video class="work-video" src="assets/videos/camel-milk-30s.mp4" poster="assets/posters/camel-milk-30s.jpg" controls playsinline preload="none"></video>
+      <div class="ph" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+        <span>视频待上传<br>驼奶粉30s开屏.mp4</span>
+      </div>
+    </div>
+    <div class="work-info">
+      <p class="w-idx">PROJECT 02 · 2026 · 30s</p>
+      <h3>驼奶粉tvc开屏广告</h3>
+      <div class="work-meta">
+        <span>客户 / 品牌　<b>马一凡</b></span>
+        <span>职责　<b>后期剪辑</b></span>
+      </div>
+      <p class="work-desc">负责视频内容产出与剪辑</p>
+    </div>
+  </article>
+
+  <article class="work-item reveal">
+    <div class="work-media">
+      <video class="work-video" src="assets/videos/camel-milk-15s-elevator.mp4" poster="assets/posters/camel-milk-15s-elevator.jpg" controls playsinline preload="none"></video>
+      <div class="ph" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+        <span>视频待上传<br>驼奶粉15s电梯.mp4</span>
+      </div>
+    </div>
+    <div class="work-info">
+      <p class="w-idx">PROJECT 03 · 2026 · 15s</p>
+      <h3>驼奶粉电梯广告</h3>
+      <div class="work-meta">
+        <span>客户 / 品牌　<b>马一凡</b></span>
+        <span>职责　<b>后期剪辑</b></span>
+      </div>
+      <p class="work-desc">负责视频内容产出与剪辑</p>
+    </div>
+  </article>
+</section>
+
+<!-- ========== 关于我 ========== -->
+<section id="about">
+  <div class="sec-head reveal">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">关于我</h2>
+    <span class="sec-en">ABOUT</span>
+  </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <h3 class="about-name">刘洋<span>LIUYANG</span></h3>
+      <p class="about-pos">tvc剪辑师/后期剪辑师</p>
+      <span class="about-status">27应届实习中</span>
+      <div class="about-tags">
+        <span class="tag">tvc广告</span><span class="tag">电商广告</span><span class="tag">微短剧</span>
+        <span class="tag">微电影</span><span class="tag">ai漫剧</span>
+      </div>
+      <div class="soft-row">
+        <span class="soft">PR</span><span class="soft">AE</span><span class="soft">PS</span>
+        <span class="soft">FCP</span><span class="soft">达芬奇</span><span class="soft">剪映</span><span class="soft">libTV</span>
+      </div>
+    </div>
+    <div class="about-intro reveal">
+      <p>熟练掌握数字媒体内容创作全流程，独立完成<span class="hl">【宣传片】【微电影】【AI漫剧】【短视频创作】</span>项目从创意策划到后期输出的完整实践。</p>
+      <p>具备扎实的技术基础，能够灵活运用<span class="hl">【PR】【AE】【PS】【FCP】【达芬奇】【剪映】【libTV】</span>快速产出高质量视觉素材。</p>
+      <p>善于系统性学习和问题解决，参与<span class="hl">【TVC】</span>时通过<span class="hl">【AI生成优化素材】</span>攻克技术难点，提升作品完成度。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 简历 ========== -->
+<section class="resume" id="resume">
+  <div class="sec-head reveal">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">简历</h2>
+    <span class="sec-en">RESUME</span>
+  </div>
+
+  <div class="exp reveal">
+    <p class="exp-date">2027.7-至今</p>
+    <h3>金燎创意（山东）文化传播有限公司</h3>
+    <h4>影视后期</h4>
+    <p>负责公司tvc广告制作剪辑，ai素材生成，企业活动宣传片剪辑</p>
+  </div>
+
+  <div class="edu reveal">
+    <span class="edu-label">教育背景</span>
+    <span class="edu-value">数字媒体技术专业 · 本科</span>
+    <span class="edu-label">使用软件</span>
+    <span class="edu-value">PR / AE / 达芬奇 / FCP / 剪映</span>
+  </div>
+  <a class="dl-btn reveal" href="assets/resume-liuyang.pdf" download>
+    <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+    下载简历 PDF
+  </a>
+</section>
+
+<!-- ========== 联系 ========== -->
+<section id="contact">
+  <div class="sec-head reveal">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">联系</h2>
+    <span class="sec-en">CONTACT</span>
+  </div>
+  <div class="contact-inner reveal">
+    <h3 class="c-title">让作品替你开口</h3>
+    <p class="c-sub">tvc广告 | 电商广告 | 微短剧 | 微电影 | ai漫剧</p>
+    <div class="c-cards">
+      <a class="c-card" href="tel:15192930151">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        <p class="k">电话</p><p class="v">15192930151</p>
+      </a>
+      <a class="c-card" href="mailto:X1972005213@163.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <p class="k">邮箱</p><p class="v">X1972005213@163.com</p>
+      </a>
+      <button class="c-card" type="button" id="wxCopy" aria-label="复制微信号">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.5 0-2.9-.4-4.1-1L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        <p class="k">微信（点击复制）</p><p class="v" id="wxVal">Eigna445</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 刘洋 LIUYANG</span>
+  <span>tvc剪辑师/后期剪辑师</span>
+</footer>
+
+<script>
+/* ---------- 导航滚动态 ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.classList.toggle('solid', scrollY > 40);
+}, { passive: true });
+
+/* ---------- 入场动画 ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- 视频互斥：任意时刻只允许一个视频播放 ---------- */
+const bgVideo = document.getElementById('bgVideo');
+const workVideos = [...document.querySelectorAll('.work-video')];
+const allVideos = [bgVideo, ...workVideos];
+
+function pauseOthers(current) {
+  allVideos.forEach(v => { if (v !== current && !v.paused) v.pause(); });
+}
+allVideos.forEach(v => v.addEventListener('play', () => pauseOthers(v)));
+
+/* 背景视频进入可视区域外时暂停，回到首屏自动恢复（仅当没有其他视频在播） */
+let heroVisible = true;
+function resumeBg() {
+  if (heroVisible && !workVideos.some(v => !v.paused)) bgVideo.play().catch(() => {});
+}
+const heroIO = new IntersectionObserver(([e]) => {
+  heroVisible = e.isIntersecting;
+  if (heroVisible) resumeBg(); else bgVideo.pause();
+}, { threshold: .2 });
+heroIO.observe(document.getElementById('top'));
+
+/* 作品视频暂停/结束后，若首屏可见且无其他视频在播，恢复背景 */
+workVideos.forEach(v => {
+  v.addEventListener('pause', resumeBg);
+  v.addEventListener('ended', resumeBg);
+});
+
+/* 微信点击复制 */
+const wxBtn = document.getElementById('wxCopy');
+if (wxBtn) wxBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText('Eigna445');
+    const v = document.getElementById('wxVal');
+    v.textContent = '已复制 ✓';
+    setTimeout(() => { v.textContent = 'Eigna445'; }, 1600);
+  } catch (e) { /* 剪贴板不可用时保持原样 */ }
+});
+
+/* ---------- 视频缺失降级：显示占位块 ---------- */
+/* 仅在确认资源不存在(MEDIA_ERR_SRC_NOT_SUPPORTED)时才换占位块，
+   瞬时网络错误(file:// 的 range 中止)保留 poster 画面 */
+document.querySelectorAll('.work-media').forEach(box => {
+  const v = box.querySelector('video');
+  const ph = box.querySelector('.ph');
+  const fail = () => { if (v.error && v.error.code === 3) { v.remove(); ph.hidden = false; } };
+  v.addEventListener('error', fail);
+  fail();
+});
+bgVideo.addEventListener('error', () => { if (bgVideo.error && bgVideo.error.code === 3) bgVideo.remove(); });
+if (bgVideo.error && bgVideo.error.code === 3) bgVideo.remove();
+</script>
+</body>
+</html>
